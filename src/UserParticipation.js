@@ -1,4 +1,5 @@
 import React from "react";
+import AnotherUserParticipation from "./AnotherUserParticipation";
 
 function UserParticipation({ question, choices }) {
   const [selectedChoice, setSelectedChoice] = React.useState(null);
@@ -6,6 +7,11 @@ function UserParticipation({ question, choices }) {
   const [hasVoted, setHasVoted] = React.useState(false);
 
   const [text, setText] = React.useState("");
+  function handleAnotherUser(user, text) {
+    setSelectedChoice(text);
+    setHasVoted(user);
+    setText("");
+  }
   function handleSubmit(event) {
     event.preventDefault();
     if (selectedChoice === null) {
@@ -51,6 +57,7 @@ function UserParticipation({ question, choices }) {
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
+        {hasVoted && <AnotherUserParticipation onClick={handleAnotherUser} />}
       </form>
     </div>
   );
