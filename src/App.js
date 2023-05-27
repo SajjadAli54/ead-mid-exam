@@ -1,10 +1,11 @@
 import "./App.css";
 import PollDisplay from "./PollDisplay";
+import UserParticipation from "./UserParticipation";
 
 function App() {
   return (
     <div className="App">
-      <PollDisplay
+      <UserParticipation
         question="What is your favorite programming language?"
         choices={[
           { id: 1, label: "JavaScript", votes: 0 },
