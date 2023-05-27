@@ -3,7 +3,7 @@ import React from "react";
 function AnotherUserParticipation({ onClick }) {
   function handleCLick(event) {
     event.preventDefault();
-    onClick(false, null);
+    onClick();
   }
   return (
     <div>

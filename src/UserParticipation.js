@@ -1,30 +1,16 @@
 import React from "react";
-import AnotherUserParticipation from "./AnotherUserParticipation";
-import ThankYouMessage from "./ThankYouMessage";
+import { Formik, Field, Form } from "formik";
 
-function UserParticipation({ question, choices }) {
+function UserParticipation({ question, choices, onSubmit, user, selection }) {
   const [selectedChoice, setSelectedChoice] = React.useState(null);
-  const [myChoices, setMyChoices] = React.useState(choices);
-  const [hasVoted, setHasVoted] = React.useState(false);
 
-  const [text, setText] = React.useState("");
-  function handleAnotherUser(user, text) {
-    setSelectedChoice(text);
-    setHasVoted(user);
-    setText("");
-  }
   function handleSubmit(event) {
     event.preventDefault();
-    if (selectedChoice === null) {
+    if (selectedChoice === null || user) {
       return;
     }
-    if (hasVoted) {
-      setText("You have already voted.");
-      return;
-    }
-    setHasVoted(true);
-    console.log("selectedChoice", choices[selectedChoice].label);
-    const newChoices = myChoices.map((choice, index) => {
+
+    const newChoices = choices.map((choice, index) => {
       if (index === selectedChoice) {
         return {
           ...choice,
@@ -33,7 +19,7 @@ function UserParticipation({ question, choices }) {
       }
       return choice;
     });
-    setMyChoices(newChoices);
+    onSubmit(newChoices);
   }
   function handleVote(index) {
     setSelectedChoice(index);
@@ -41,7 +27,6 @@ function UserParticipation({ question, choices }) {
   return (
     <div>
       <h2>Poll Question: {question}</h2>
-      {hasVoted && <p>{text}</p>}
       <form>
         {choices.map((choice, index) => (
           <div key={choice.id}>
@@ -55,14 +40,14 @@ function UserParticipation({ question, choices }) {
             <label htmlFor={`choice-${choice.id}`}>{choice.label}</label>
           </div>
         ))}
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-        {hasVoted && <ThankYouMessage />}
-        {hasVoted && <AnotherUserParticipation onClick={handleAnotherUser} />}
       </form>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
+
+/**
+ * Formik Radio Buttons for above task that gets reset on submit
+ */
 
 export default UserParticipation;
