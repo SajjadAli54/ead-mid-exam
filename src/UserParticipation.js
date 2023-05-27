@@ -1,5 +1,6 @@
 import React from "react";
 import AnotherUserParticipation from "./AnotherUserParticipation";
+import ThankYouMessage from "./ThankYouMessage";
 
 function UserParticipation({ question, choices }) {
   const [selectedChoice, setSelectedChoice] = React.useState(null);
@@ -57,6 +58,7 @@ function UserParticipation({ question, choices }) {
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
+        {hasVoted && <ThankYouMessage />}
         {hasVoted && <AnotherUserParticipation onClick={handleAnotherUser} />}
       </form>
     </div>
