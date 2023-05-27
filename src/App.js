@@ -5,6 +5,8 @@ import UserParticipation from "./UserParticipation";
 import ThankYouMessage from "./ThankYouMessage";
 import AnotherUserParticipation from "./AnotherUserParticipation";
 
+import { Button } from "antd";
+
 function App() {
   const obj = {
     question: "What is your favorite programming language?",
@@ -34,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <PollDisplay question={obj.question} choices={choices} />
-      <button onClick={() => setHasStarted(true)}>Start Poll</button>
+      <Button onClick={() => setHasStarted(true)}>Start Poll</Button>
 
       {hasStarted && (
         <UserParticipation

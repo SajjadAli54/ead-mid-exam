@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Card, List } from "antd";
+
 /**
  * Display of predefined poll question and answer choices
  *  Show the number of votes for each answer choice
@@ -7,16 +9,16 @@ import React from "react";
  */
 function PollDisplay({ question, choices }) {
   return (
-    <div>
+    <Card>
       <h2>Poll Question: {question}</h2>
-      <ul>
+      <List>
         {choices.map((choice) => (
           <li key={choice.id}>
             {choice.label} : {choice.votes} Votes
           </li>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Card>
   );
 }
 

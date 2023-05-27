@@ -1,7 +1,9 @@
 import React from "react";
 
+import { Card } from "antd";
+
 function ThankYouMessage() {
-  return <div>Thanks for voting</div>;
+  return <Card>Thanks for voting</Card>;
 }
 
 export default ThankYouMessage;

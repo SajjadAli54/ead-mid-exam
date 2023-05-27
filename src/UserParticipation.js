@@ -1,5 +1,6 @@
 import React from "react";
-import { Formik, Field, Form } from "formik";
+
+import { Card, Button } from "antd";
 
 function UserParticipation({ question, choices, onSubmit, user, selection }) {
   const [selectedChoice, setSelectedChoice] = React.useState(null);
@@ -29,7 +30,7 @@ function UserParticipation({ question, choices, onSubmit, user, selection }) {
       <h2>Poll Question: {question}</h2>
       <form>
         {choices.map((choice, index) => (
-          <div key={choice.id}>
+          <Card key={choice.id}>
             <input
               type="radio"
               name="vote"
@@ -38,16 +39,12 @@ function UserParticipation({ question, choices, onSubmit, user, selection }) {
               onChange={() => handleVote(index)}
             />
             <label htmlFor={`choice-${choice.id}`}>{choice.label}</label>
-          </div>
+          </Card>
         ))}
       </form>
-      <button onClick={handleSubmit}>Submit</button>
+      <Button onClick={handleSubmit}>Submit</Button>
     </div>
   );
 }
-
-/**
- * Formik Radio Buttons for above task that gets reset on submit
- */
 
 export default UserParticipation;
